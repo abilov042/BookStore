@@ -1,14 +1,120 @@
 databaseChangeLog:
   - changeSet:
       id: 1
-      author: Liquibase
+      author: shamilabilov
       changes:
         - createTable:
+            tableName: users
             columns:
               - column:
-                  name: username
+                  name: id
                   type: INT
+                  autoIncrement: true
                   constraints:
                     primaryKey:  true
                     nullable:  false
-                    tableName: users
+              - column:
+                  name: username
+                  type: varchar(200)
+              - column:
+                  name: email
+                  type: varchar(200)
+
+  - changeSet:
+      id: 2
+      author: shamilabilov
+      changes:
+        - createTable:
+              tableName: students
+              columns:
+                - column:
+                    name: id
+                    type: SERIAL
+                    constraints:
+                      primaryKey: true
+                      nullable: false
+                - column:
+                    name: student_id
+                    type: INT
+                    constraints:
+                      unique: true
+                      nullable: false
+
+
+        - addForeignKeyConstraint:
+              baseTableName: students
+              baseColumnNames: student_id
+              referencedTableName: users
+              referencedColumnNames: id
+              constraintName: FK_students_users
+
+  - changeSet:
+      id: 3
+      author: shamilabilov
+      changes:
+        - addColumn:
+            tableName: students
+            columns:
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: age
+                  type: INT
+                  constraints:
+                    nullable: true
+  - changeSet:
+      id: 4
+      author: shamilabilov
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: students
+            baseColumnNames: id
+            referencedTableName: users
+            referencedColumnNames: id
+            constraintName: FK_students_users
+
+
+  - changeSet:
+      id: 5
+      author: shamilabilov
+      changes:
+        - createTable:
+            tableName: author
+            columns:
+              - column:
+                  name: id
+                  type: SERIAL
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: age
+                  type: INT
+                  constraints:
+                    nullable: true
+        - addForeignKeyConstraint:
+            baseTableName: author
+            baseColumnNames: id
+            referencedTableName: users
+            referencedColumnNames: id
+            constraintName: FK_students_users
+  - changeSet:
+      id: 6
+      author: shamilabilov
+      changes:
+        - addColumn:
+            tableName: students
+            columns:
+              - column:
+                  name: shamil
+                  type: VARCHAR(255)
+
