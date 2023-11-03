@@ -10,10 +10,7 @@ import com.task.bookstore.entity.concretes.dtos.response.UserInfoResponse;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -25,14 +22,14 @@ public class UserController {
 
 
     @PostMapping("/login")
-    public ResponseEntity<DataResult<UserInfoResponse>> login(LoginRequest loginRequest){
+    public ResponseEntity<DataResult<UserInfoResponse>> login(@RequestBody LoginRequest loginRequest){
 
         return ResponseEntity.ok(userService.login(loginRequest));
     }
 
 
     @PostMapping("/register")
-    public ResponseEntity<Result> register(SignupRequest signupRequest){
+    public ResponseEntity<Result> register(@RequestBody SignupRequest signupRequest){
 
         return ResponseEntity.ok(userService.register(signupRequest));
     }
