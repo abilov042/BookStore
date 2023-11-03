@@ -27,9 +27,9 @@ public class Student {
     @Column(name = "age")
     private int age;
 
-//    @ManyToMany(cascade = CascadeType.ALL)
-//    @JoinTable(name = "student_book",
-//            joinColumns = @JoinColumn(name = "student_id"),
-//            inverseJoinColumns = @JoinColumn(name = "book_id"))
-//    private List<Book> books;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "student_book",
+            joinColumns = @JoinColumn(name = "student_id"),
+            inverseJoinColumns = @JoinColumn(name = "book_id"))
+    private List<Book> books;
 }

@@ -39,7 +39,7 @@ public class GlobalExceptionHandling {
                 validationErrors.put(fieldError.getField(), fieldError.getDefaultMessage());
             }
 
-            return new ResponseEntity<>(new ErrorDataResult<>(validationErrors, "user can't saved"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new ErrorDataResult<>(validationErrors, "validation error"), HttpStatus.BAD_REQUEST);
         }
 
         @ExceptionHandler(value = ConfirmPasswordException.class)

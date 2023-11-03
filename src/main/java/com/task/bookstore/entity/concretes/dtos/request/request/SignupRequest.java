@@ -1,4 +1,4 @@
-package com.task.bookstore.entity.concretes.dtos.request;
+package com.task.bookstore.entity.concretes.dtos.request.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

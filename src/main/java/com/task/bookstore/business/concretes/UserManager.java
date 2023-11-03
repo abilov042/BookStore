@@ -10,8 +10,8 @@ import com.task.bookstore.core.security.entities.UserDetailsImpl;
 import com.task.bookstore.core.security.jwt.JWTUtils;
 import com.task.bookstore.dataAccess.abstracts.RoleDao;
 import com.task.bookstore.dataAccess.abstracts.UserDao;
-import com.task.bookstore.entity.concretes.dtos.request.LoginRequest;
-import com.task.bookstore.entity.concretes.dtos.request.SignupRequest;
+import com.task.bookstore.entity.concretes.dtos.request.request.LoginRequest;
+import com.task.bookstore.entity.concretes.dtos.request.request.SignupRequest;
 import com.task.bookstore.entity.concretes.dtos.response.UserInfoResponse;
 import com.task.bookstore.entity.concretes.roles.ERole;
 import com.task.bookstore.entity.concretes.roles.Role;
@@ -58,7 +58,7 @@ public class UserManager implements UserService {
                 userDetails.getUsername(),
                 userDetails.getEmail(),
                 jwt,
-                roles));
+                roles), "successfully found user");
     }
 
     @Override

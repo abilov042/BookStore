@@ -3,11 +3,10 @@ package com.task.bookstore.api.controller;
 import com.task.bookstore.business.abstracts.UserService;
 import com.task.bookstore.core.result.DataResult;
 import com.task.bookstore.core.result.Result;
-import com.task.bookstore.core.result.SuccessResult;
-import com.task.bookstore.entity.concretes.dtos.request.LoginRequest;
-import com.task.bookstore.entity.concretes.dtos.request.SignupRequest;
+import com.task.bookstore.entity.concretes.dtos.request.request.LoginRequest;
+import com.task.bookstore.entity.concretes.dtos.request.request.SignupRequest;
 import com.task.bookstore.entity.concretes.dtos.response.UserInfoResponse;
-import lombok.AllArgsConstructor;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,7 +28,7 @@ public class UserController {
 
 
     @PostMapping("/register")
-    public ResponseEntity<Result> register(@RequestBody SignupRequest signupRequest){
+    public ResponseEntity<Result> register(@RequestBody @Valid SignupRequest signupRequest){
 
         return ResponseEntity.ok(userService.register(signupRequest));
     }
