@@ -1,7 +1,7 @@
 package com.task.bookstore.api.globalExceptionHandling;
 
 import com.task.bookstore.core.excepstions.config.ConfirmPasswordException;
-import com.task.bookstore.core.excepstions.config.ExistsEmailException;
+import com.task.bookstore.core.excepstions.config.ExistsUserException;
 import com.task.bookstore.core.excepstions.config.NotFountException;
 import com.task.bookstore.core.excepstions.exceptionInfo.ErrorResponseBodyInfo;
 import com.task.bookstore.core.result.DataResult;
@@ -49,11 +49,11 @@ public class GlobalExceptionHandling {
             return new ResponseEntity<>(new ErrorDataResult<>(responseHeaderInfo, "password not same"), HttpStatus.BAD_REQUEST);
         }
 
-    @ExceptionHandler(value = ExistsEmailException.class)
+    @ExceptionHandler(value = ExistsUserException.class)
     public ResponseEntity<DataResult<ErrorResponseBodyInfo>> existsEmailValid(){
         ErrorResponseBodyInfo responseHeaderInfo = new ErrorResponseBodyInfo(400, "Bad Request",
                 LocalDateTime.now());
-        return new ResponseEntity<>(new ErrorDataResult<>(responseHeaderInfo, "email already use"), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(new ErrorDataResult<>(responseHeaderInfo, "user already exists"), HttpStatus.BAD_REQUEST);
     }
 
 }
