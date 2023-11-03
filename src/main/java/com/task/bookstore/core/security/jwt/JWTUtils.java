@@ -1,6 +1,5 @@
 package com.task.bookstore.core.security.jwt;
 
-import com.chatApp.core.security.entities.UserDetailsImpl;
 import com.task.bookstore.core.security.entities.UserDetailsImpl;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
