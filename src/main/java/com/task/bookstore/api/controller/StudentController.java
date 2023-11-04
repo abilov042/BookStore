@@ -2,6 +2,7 @@ package com.task.bookstore.api.controller;
 
 import com.task.bookstore.business.abstracts.StudentService;
 import com.task.bookstore.core.result.Result;
+import com.task.bookstore.entity.concretes.dtos.request.request.AddBookRequest;
 import com.task.bookstore.entity.concretes.dtos.request.request.StudentRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -27,4 +28,9 @@ public class StudentController {
         return ResponseEntity.ok(studentService.update(id,studentRequest));
     }
 
+    @PutMapping("/addBook/{id}")
+    public ResponseEntity<Result> addBook(@PathVariable int id, @RequestBody AddBookRequest bookRequest){
+
+        return ResponseEntity.ok(studentService.addBook(id, bookRequest));
+    }
 }

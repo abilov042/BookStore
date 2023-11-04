@@ -6,4 +6,5 @@ import com.task.bookstore.entity.concretes.dtos.request.request.AuthorRequest;
 public interface AuthorService {
     Result save(AuthorRequest authorRequest);
     Result update(int id, AuthorRequest authorRequest);
+
 }

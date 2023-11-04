@@ -27,9 +27,21 @@ public class Student {
     @Column(name = "age")
     private int age;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "student_book",
             joinColumns = @JoinColumn(name = "student_id"),
             inverseJoinColumns = @JoinColumn(name = "book_id"))
     private List<Book> books;
+
+    @ManyToMany
+    @JoinTable(
+            name = "student_author",
+            joinColumns = @JoinColumn(name = "student_id"),
+            inverseJoinColumns = @JoinColumn(name = "author_id")
+    )
+    private List<Author> subscribedAuthors;
 }

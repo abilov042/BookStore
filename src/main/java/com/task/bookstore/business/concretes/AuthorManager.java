@@ -18,6 +18,7 @@ public class AuthorManager implements AuthorService {
     private final AuthorMapper authorMapper;
     @Override
     public Result save(AuthorRequest authorRequest) {
+        System.out.println(authorMapper.authorRequestToAuthor(authorRequest));
         authorDao.save(authorMapper.authorRequestToAuthor(authorRequest));
         return new SuccessResult("Author successfully saved");
     }

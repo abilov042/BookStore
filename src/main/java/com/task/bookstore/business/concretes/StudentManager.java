@@ -1,10 +1,12 @@
 package com.task.bookstore.business.concretes;
 
 import com.task.bookstore.business.abstracts.StudentService;
+import com.task.bookstore.core.excepstions.config.NotFountException;
 import com.task.bookstore.core.mapper.StudentMapper;
 import com.task.bookstore.core.result.Result;
 import com.task.bookstore.core.result.SuccessResult;
 import com.task.bookstore.dataAccess.abstracts.StudentDao;
+import com.task.bookstore.entity.concretes.dtos.request.request.AddBookRequest;
 import com.task.bookstore.entity.concretes.dtos.request.request.StudentRequest;
 import com.task.bookstore.entity.concretes.users.Student;
 import lombok.RequiredArgsConstructor;
@@ -30,5 +32,13 @@ public class StudentManager implements StudentService {
         studentDao.save(studentMapper.updateRequestToEntity(student, studentRequest));
 
         return new SuccessResult("student successfully updated");
+    }
+
+    @Override
+    public Result addBook(int id, AddBookRequest bookRequest) {
+        Student student = studentDao.findById(id).orElseThrow(()-> new NotFountException("student not found"));
+
+        studentDao.save(studentMapper.updateAddBookToEntity(student, bookRequest));
+        return new SuccessResult("Book added in library");
     }
 }

@@ -10,6 +10,7 @@ public interface AuthorMapper {
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "books", ignore = true)
+    @Mapping(target = "user", source = "user")
     Author authorRequestToAuthor(AuthorRequest authorRequest);
 
     Author updateAuthorRequestToEntity(@MappingTarget Author author, AuthorRequest authorRequest);

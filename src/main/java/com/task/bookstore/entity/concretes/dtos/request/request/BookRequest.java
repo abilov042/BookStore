@@ -1,6 +1,6 @@
 package com.task.bookstore.entity.concretes.dtos.request.request;
 
-import com.task.bookstore.entity.concretes.users.User;
+import com.task.bookstore.entity.concretes.users.Author;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -10,13 +10,11 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class StudentRequest {
+public class BookRequest {
 
     @NotBlank
     @NotNull
     private String name;
 
-    private int age;
-
-    private User user;
+    private Author author;
 }

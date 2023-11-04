@@ -26,6 +26,13 @@ public class Author {
     @Column(name = "age")
     private int age;
 
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
     @OneToMany
     private List<Book> books;
+
+    @ManyToMany(mappedBy = "subscribedAuthors")
+    private List<Student> subscribers;
 }

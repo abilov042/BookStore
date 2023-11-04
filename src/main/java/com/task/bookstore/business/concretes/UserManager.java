@@ -86,19 +86,16 @@ public class UserManager implements UserService {
         } else {
             strRoles.forEach(role -> {
                 switch (role) {
-                    case "student":
-                        Role adminRole = roleDao.findByName(ERole.AUTHOR)
+                    case "student" -> {
+                        Role adminRole = roleDao.findByName(ERole.STUDENT)
                                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                         roles.add(adminRole);
-
-                        break;
-                    case "author":
-                        Role modRole = roleDao.findByName(ERole.STUDENT)
+                    }
+                    case "author" -> {
+                        Role modRole = roleDao.findByName(ERole.AUTHOR)
                                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                         roles.add(modRole);
-
-                        break;
-
+                    }
                 }
             });
         }
