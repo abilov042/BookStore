@@ -4,6 +4,7 @@ import com.task.bookstore.business.abstracts.StudentService;
 import com.task.bookstore.core.result.Result;
 import com.task.bookstore.entity.concretes.dtos.request.request.AddBookRequest;
 import com.task.bookstore.entity.concretes.dtos.request.request.StudentRequest;
+import com.task.bookstore.entity.concretes.dtos.request.request.SubscribeRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -29,8 +30,14 @@ public class StudentController {
     }
 
     @PutMapping("/addBook/{id}")
-    public ResponseEntity<Result> addBook(@PathVariable int id, @RequestBody AddBookRequest bookRequest){
+    public ResponseEntity<Result> addBook(@PathVariable int id, @RequestParam int bookId){
 
-        return ResponseEntity.ok(studentService.addBook(id, bookRequest));
+        return ResponseEntity.ok(studentService.addBook(id, bookId));
+    }
+
+    @PutMapping("/subscribe/{id}")
+    public ResponseEntity<Result> subscribe(@PathVariable int id, int authorId){
+
+        return ResponseEntity.ok(studentService.subscribe(id, authorId));
     }
 }

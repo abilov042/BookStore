@@ -2,6 +2,7 @@ package com.task.bookstore.core.mapper;
 
 import com.task.bookstore.entity.concretes.dtos.request.request.AddBookRequest;
 import com.task.bookstore.entity.concretes.dtos.request.request.StudentRequest;
+import com.task.bookstore.entity.concretes.dtos.request.request.SubscribeRequest;
 import com.task.bookstore.entity.concretes.users.Student;
 import org.mapstruct.*;
 
@@ -23,4 +24,5 @@ public interface StudentMapper {
     Student addBookRequestToStudent(AddBookRequest bookRequest);
 
     Student updateAddBookToEntity(@MappingTarget Student student, AddBookRequest bookRequest);
+    Student updateSubscribeRequestToEntity(@MappingTarget Student student, SubscribeRequest subscribeRequest);
 }
