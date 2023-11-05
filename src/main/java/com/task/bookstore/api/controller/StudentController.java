@@ -1,14 +1,19 @@
 package com.task.bookstore.api.controller;
 
 import com.task.bookstore.business.abstracts.StudentService;
+import com.task.bookstore.core.result.DataResult;
 import com.task.bookstore.core.result.Result;
 import com.task.bookstore.entity.concretes.dtos.request.request.AddBookRequest;
 import com.task.bookstore.entity.concretes.dtos.request.request.StudentRequest;
 import com.task.bookstore.entity.concretes.dtos.request.request.SubscribeRequest;
+import com.task.bookstore.entity.concretes.dtos.response.BookResponse;
+import com.task.bookstore.entity.concretes.users.Book;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/students")
@@ -39,5 +44,11 @@ public class StudentController {
     public ResponseEntity<Result> subscribe(@PathVariable int id, int authorId){
 
         return ResponseEntity.ok(studentService.subscribe(id, authorId));
+    }
+
+    @GetMapping("/getBooksByStudent/{id}")
+    public ResponseEntity<DataResult<List<BookResponse>>> getBooksByStudent(@PathVariable int id){
+
+        return ResponseEntity.ok(studentService.getBooksByStudent(id));
     }
 }

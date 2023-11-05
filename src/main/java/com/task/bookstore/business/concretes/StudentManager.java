@@ -2,13 +2,18 @@ package com.task.bookstore.business.concretes;
 
 import com.task.bookstore.business.abstracts.StudentService;
 import com.task.bookstore.core.excepstions.config.NotFountException;
+import com.task.bookstore.core.mapper.BookMapper;
 import com.task.bookstore.core.mapper.StudentMapper;
+import com.task.bookstore.core.result.DataResult;
 import com.task.bookstore.core.result.Result;
+import com.task.bookstore.core.result.SuccessDataResult;
 import com.task.bookstore.core.result.SuccessResult;
+import com.task.bookstore.dataAccess.abstracts.BookDao;
 import com.task.bookstore.dataAccess.abstracts.StudentDao;
 import com.task.bookstore.entity.concretes.dtos.request.request.AddBookRequest;
 import com.task.bookstore.entity.concretes.dtos.request.request.StudentRequest;
 import com.task.bookstore.entity.concretes.dtos.request.request.SubscribeRequest;
+import com.task.bookstore.entity.concretes.dtos.response.BookResponse;
 import com.task.bookstore.entity.concretes.users.Author;
 import com.task.bookstore.entity.concretes.users.Book;
 import com.task.bookstore.entity.concretes.users.Student;
@@ -24,6 +29,8 @@ import java.util.List;
 public class StudentManager implements StudentService {
     private final StudentDao  studentDao;
     private final StudentMapper studentMapper;
+    private final BookDao bookDao;
+    private  final BookMapper bookMapper;
 
     @Override
     public Result save(StudentRequest studentRequest) {
@@ -62,5 +69,12 @@ public class StudentManager implements StudentService {
         student.setSubscribedAuthors(authors);
         studentDao.save(student);
         return new SuccessResult("Followed author");
+    }
+
+    @Override
+    public DataResult<List<BookResponse>> getBooksByStudent(int id) {
+        Student student = studentDao.findById(id).orElseThrow(()-> new NotFountException("Book not found"));
+
+        return new SuccessDataResult<>(bookMapper.convertToListBooks(bookDao.findByStudentsContains(student)), "Books listed");
     }
 }

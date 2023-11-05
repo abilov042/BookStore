@@ -27,4 +27,7 @@ public class Book {
     @JoinColumn(name = "author_id")
     private Author author;
 
+    @ManyToMany(mappedBy = "books")
+    private List<Student> students;
+
 }
