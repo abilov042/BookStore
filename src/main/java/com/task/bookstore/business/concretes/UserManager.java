@@ -2,6 +2,7 @@ package com.task.bookstore.business.concretes;
 
 import com.task.bookstore.business.abstracts.UserService;
 import com.task.bookstore.core.excepstions.config.ExistsUserException;
+import com.task.bookstore.core.excepstions.config.NotFountException;
 import com.task.bookstore.core.result.DataResult;
 import com.task.bookstore.core.result.Result;
 import com.task.bookstore.core.result.SuccessDataResult;
@@ -81,19 +82,19 @@ public class UserManager implements UserService {
 
         if (strRoles == null) {
             Role userRole = roleDao.findByName(ERole.STUDENT)
-                    .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                    .orElseThrow(() -> new NotFountException("Error: Role is not found."));
             roles.add(userRole);
         } else {
             strRoles.forEach(role -> {
                 switch (role) {
                     case "student" -> {
                         Role adminRole = roleDao.findByName(ERole.STUDENT)
-                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                                .orElseThrow(() -> new NotFountException("Error: Role is not found."));
                         roles.add(adminRole);
                     }
                     case "author" -> {
                         Role modRole = roleDao.findByName(ERole.AUTHOR)
-                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                                .orElseThrow(() -> new NotFountException("Error: Role is not found."));
                         roles.add(modRole);
                     }
                 }
