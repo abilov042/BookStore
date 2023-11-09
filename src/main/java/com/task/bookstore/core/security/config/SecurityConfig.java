@@ -67,7 +67,7 @@ public class SecurityConfig {
                         auth.requestMatchers("/api/auth/**").permitAll()
                                 .requestMatchers(permitSwagger).permitAll()
                                 .requestMatchers("/api/test").permitAll()
-                                .anyRequest().authenticated()
+                                .anyRequest().permitAll()
                 );
 
         http.authenticationProvider(authenticationProvider());
